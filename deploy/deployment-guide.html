@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Campus26 - Deployment Guide</title>
+    <title>Campus27 - Deployment Guide</title>
     <style>
         * { margin: 0; padding: 0; box-sizing: border-box; }
         body {
@@ -351,7 +351,7 @@
 <body>
 
 <div class="hero">
-    <h1>Campus26 Deployment Guide</h1>
+    <h1>Campus27 Deployment Guide</h1>
     <p>دليل النشر التفاعلي خطوة بخطوة</p>
     <div class="domain">app.cranl.com + cranl.com</div>
 </div>
@@ -467,7 +467,7 @@
             <span class="toggle-arrow">◀</span>
         </div>
         <div class="step-content">
-            <div class="note success">المشروع مرفوع في /opt/campus26/</div>
+            <div class="note success">المشروع مرفوع في /opt/campus27/</div>
         </div>
     </div>
 
@@ -499,7 +499,7 @@
             <span class="toggle-arrow">◀</span>
         </div>
         <div class="step-content">
-            <div class="note success">Image campus26-app و campus26-migrator بُنيا بنجاح.</div>
+            <div class="note success">Image campus27-app و campus27-migrator بُنيا بنجاح.</div>
         </div>
     </div>
 
@@ -523,14 +523,14 @@
             <h4 style="margin: 16px 0 8px; color: #f1f5f9;">5.1 — أوقف كل شيء واحذف البيانات القديمة:</h4>
             <div class="cmd-block">
                 <button class="copy-btn" onclick="copyCmd(this)">نسخ</button>
-                <span class="cmd">cd</span> /opt/campus26<br>
+                <span class="cmd">cd</span> /opt/campus27<br>
                 <span class="cmd">docker compose</span> <span class="flag">-f</span> docker-compose.prod.yml <span class="flag">--env-file</span> .env.production <span class="cmd">down -v</span>
             </div>
 
             <h4 style="margin: 16px 0 8px; color: #f1f5f9;">5.2 — احذف الصور القديمة وأعد البناء:</h4>
             <div class="cmd-block">
                 <button class="copy-btn" onclick="copyCmd(this)">نسخ</button>
-                <span class="cmd">docker rmi</span> $(docker images -q 'campus26*') 2>/dev/null; true<br>
+                <span class="cmd">docker rmi</span> $(docker images -q 'campus27*') 2>/dev/null; true<br>
                 <span class="cmd">docker compose</span> <span class="flag">-f</span> docker-compose.prod.yml <span class="flag">--env-file</span> .env.production <span class="cmd">build --no-cache</span>
             </div>
             <div class="note">⏳ ياخذ ~3-5 دقائق للبناء</div>
@@ -560,11 +560,11 @@
             <div class="cmd-block">
                 <button class="copy-btn" onclick="copyCmd(this)">نسخ</button>
                 <span class="cmd">docker compose</span> <span class="flag">-f</span> docker-compose.prod.yml <span class="flag">--env-file</span> .env.production <span class="cmd">exec db</span> \<br>
-                &nbsp;&nbsp;psql <span class="flag">-U</span> campus26 <span class="flag">-d</span> campus26 <span class="flag">-c</span> <span class="string">"SELECT email, role FROM users LIMIT 5;"</span>
+                &nbsp;&nbsp;psql <span class="flag">-U</span> campus27 <span class="flag">-d</span> campus27 <span class="flag">-c</span> <span class="string">"SELECT email, role FROM users LIMIT 5;"</span>
             </div>
             <div class="expected">
-                admin@campus26.sa | SUPER_ADMIN<br>
-                dean@campus26.sa  | DEAN<br>
+                admin@campus27.sa | SUPER_ADMIN<br>
+                dean@campus27.sa  | DEAN<br>
                 ...
             </div>
 
@@ -613,13 +613,13 @@
             <h4 style="margin: 16px 0 8px; color: #f1f5f9;">6.3 — تحديث NEXTAUTH_URL (على السيرفر):</h4>
             <div class="cmd-block">
                 <button class="copy-btn" onclick="copyCmd(this)">نسخ</button>
-                <span class="cmd">sed -i</span> <span class="string">'s|NEXTAUTH_URL=https://cranl.com|NEXTAUTH_URL=https://app.cranl.com|'</span> /opt/campus26/.env.production
+                <span class="cmd">sed -i</span> <span class="string">'s|NEXTAUTH_URL=https://cranl.com|NEXTAUTH_URL=https://app.cranl.com|'</span> /opt/campus27/.env.production
             </div>
 
             <h4 style="margin: 16px 0 8px; color: #f1f5f9;">6.4 — Nginx config (على السيرفر):</h4>
             <div class="cmd-block" style="font-size: 0.8rem;">
                 <button class="copy-btn" onclick="copyCmd(this)">نسخ</button>
-                <span class="cmd">cat</span> > /opt/campus26/deploy/nginx/conf.d/cranl.conf &lt;&lt; <span class="string">'EOF'</span><br>
+                <span class="cmd">cat</span> > /opt/campus27/deploy/nginx/conf.d/cranl.conf &lt;&lt; <span class="string">'EOF'</span><br>
                 <span class="comment"># cranl.com redirect to app.cranl.com</span><br>
                 server {<br>
                 &nbsp;&nbsp;listen 80;<br>
@@ -667,7 +667,7 @@
             <h4 style="margin: 16px 0 8px; color: #f1f5f9;">6.5 — أعد تشغيل الخدمات:</h4>
             <div class="cmd-block">
                 <button class="copy-btn" onclick="copyCmd(this)">نسخ</button>
-                <span class="cmd">cd</span> /opt/campus26<br>
+                <span class="cmd">cd</span> /opt/campus27<br>
                 <span class="cmd">docker compose</span> <span class="flag">-f</span> docker-compose.prod.yml <span class="flag">--env-file</span> .env.production <span class="cmd">restart</span> nginx app
             </div>
         </div>
@@ -703,7 +703,7 @@
                 </div>
                 <div class="login-field">
                     <span class="label">Email:</span>
-                    <span class="value">admin@campus26.sa</span>
+                    <span class="value">admin@campus27.sa</span>
                 </div>
                 <div class="login-field">
                     <span class="label">Password:</span>
@@ -719,19 +719,19 @@
                 <span class="comment"># 2. سجّل دخول</span><br>
                 <span class="cmd">curl</span> <span class="flag">-s -c</span> /tmp/c.txt <span class="flag">-b</span> /tmp/c.txt \<br>
                 &nbsp;&nbsp;<span class="flag">-X POST</span> http://localhost:3000/api/auth/callback/credentials \<br>
-                &nbsp;&nbsp;<span class="flag">-d</span> <span class="string">"csrfToken=${CSRF}&email=admin@campus26.sa&password=123456"</span> \<br>
+                &nbsp;&nbsp;<span class="flag">-d</span> <span class="string">"csrfToken=${CSRF}&email=admin@campus27.sa&password=123456"</span> \<br>
                 &nbsp;&nbsp;<span class="flag">-w</span> <span class="string">"\nHTTP: %{http_code}\n"</span> <span class="flag">-o</span> /dev/null<br><br>
                 <span class="comment"># 3. تحقق من الجلسة</span><br>
                 <span class="cmd">curl</span> <span class="flag">-s -b</span> /tmp/c.txt http://localhost:3000/api/auth/session
             </div>
-            <div class="expected">{"user":{"id":"...","email":"admin@campus26.sa","role":"SUPER_ADMIN",...}}</div>
+            <div class="expected">{"user":{"id":"...","email":"admin@campus27.sa","role":"SUPER_ADMIN",...}}</div>
         </div>
     </div>
 
 </div>
 
 <footer>
-    Campus26 Deployment Guide &mdash; cranl.com &mdash; 2026
+    Campus27 Deployment Guide &mdash; cranl.com &mdash; 2026
 </footer>
 
 <script>

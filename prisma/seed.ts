@@ -1,5 +1,5 @@
 // =============================================================================
-// Campus26 - Main Seed Orchestrator
+// Campus27 - Main Seed Orchestrator
 // Calls all modular seed scripts in dependency order
 // =============================================================================
 
@@ -41,7 +41,7 @@ const prisma = new PrismaClient({ adapter }) as unknown as PrismaClient;
 async function main() {
   const startTime = Date.now();
   console.log("╔══════════════════════════════════════════════════╗");
-  console.log("║        Campus26 - Comprehensive Seed Data       ║");
+  console.log("║        Campus27 - Comprehensive Seed Data       ║");
   console.log("╚══════════════════════════════════════════════════╝\n");
 
   // ── Phase 0: Clean existing data ─────────────
@@ -168,15 +168,15 @@ async function main() {
   console.log(`   Enrollments    : ${enrollments.length}`);
 
   console.log("\n🔑 Login credentials:");
-  console.log("   Admin:          admin@campus26.sa / 123456");
-  console.log("   Dean:           dean@campus26.sa / 123456");
-  console.log("   VP Trainers:    vp.trainers@campus26.sa / 123456");
-  console.log("   VP Trainees:    vp.trainees@campus26.sa / 123456");
-  console.log("   VP Quality:     vp.quality@campus26.sa / 123456");
-  console.log("   Accountant:     accountant@campus26.sa / 123456");
-  console.log("   Quality Officer: quality@campus26.sa / 123456");
-  console.log("   Dept Heads:     head.cs@campus26.sa / 123456 (etc.)");
-  console.log("   Students:       s241001@stu.campus26.sa / 123456 (etc.)");
+  console.log("   Admin:          admin@campus27.sa / 123456");
+  console.log("   Dean:           dean@campus27.sa / 123456");
+  console.log("   VP Trainers:    vp.trainers@campus27.sa / 123456");
+  console.log("   VP Trainees:    vp.trainees@campus27.sa / 123456");
+  console.log("   VP Quality:     vp.quality@campus27.sa / 123456");
+  console.log("   Accountant:     accountant@campus27.sa / 123456");
+  console.log("   Quality Officer: quality@campus27.sa / 123456");
+  console.log("   Dept Heads:     head.cs@campus27.sa / 123456 (etc.)");
+  console.log("   Students:       s241001@stu.campus27.sa / 123456 (etc.)");
 }
 
 main()

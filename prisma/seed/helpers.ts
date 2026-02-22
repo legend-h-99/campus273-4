@@ -1,5 +1,5 @@
 // =============================================================================
-// Campus26 Seed Data Helpers
+// Campus27 Seed Data Helpers
 // Saudi-realistic data generators - pure TypeScript, no external dependencies
 // =============================================================================
 
@@ -293,7 +293,7 @@ export function generateEmployeeNumber(index: number): string {
 export function generateEmail(
   firstName: string,
   lastName: string,
-  domain: string = "campus26.sa"
+  domain: string = "campus27.sa"
 ): string {
   const cleanFirst = firstName.toLowerCase().replace(/[^a-z]/g, "");
   const cleanLast = lastName

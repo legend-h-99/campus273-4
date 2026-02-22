@@ -1,5 +1,5 @@
 // =============================================================================
-// Campus26 Seed: Grades & Exams
+// Campus27 Seed: Grades & Exams
 // Generates grade records for enrollments and exam definitions for courses
 // =============================================================================
 

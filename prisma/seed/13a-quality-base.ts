@@ -1,7 +1,7 @@
 import type { PrismaClient } from "@prisma/client";
 
 // =============================================================================
-// Campus26 Quality BASE Seed Data
+// Campus27 Quality BASE Seed Data
 // Creates foundational quality records: QualityStaff, QualityStandard,
 // QualityKpi, QualityAudit, AuditFinding, ImprovementPlan,
 // ImprovementAction, Accreditation
@@ -648,7 +648,7 @@ export async function seedQualityBase(prisma: PrismaClient, adminUsers: any) {
         "وجود نظام إلكتروني متكامل لإدارة الجودة يربط بين جميع عمليات الجودة والتحسين المستمر",
       descriptionEn:
         "Integrated electronic quality management system linking all quality and continuous improvement processes",
-      evidence: "نظام Campus26، تقارير المتابعة الآلية",
+      evidence: "نظام Campus27، تقارير المتابعة الآلية",
       status: "CLOSED",
     },
   });

@@ -1,9 +1,9 @@
-# Campus26 - User Stories & User Flows
+# Campus27 - User Stories & User Flows
 # قصص المستخدم وتدفقات المستخدم - منصة كامبس26
 
 > **الإصدار:** 1.0
 > **التاريخ:** 2026-02-16
-> **النظام:** Campus26 - نظام إدارة الكلية التقنية
+> **النظام:** Campus27 - نظام إدارة الكلية التقنية
 
 ---
 
@@ -1413,7 +1413,7 @@
     └─→ [جدول المستخدمين]
             │ الاسم         │ البريد              │ الدور       │ القسم  │ الحالة │ آخر دخول    │ إجراء
             │───────────────│────────────────────│────────────│───────│──────│────────────│──────
-            │ د.أحمد العتيبي│ dean@campus26.sa   │ العميد      │ -     │ ✅    │ 12-19 08:30│ [⚙️]
+            │ د.أحمد العتيبي│ dean@campus27.sa   │ العميد      │ -     │ ✅    │ 12-19 08:30│ [⚙️]
             │
             ├─→ [⚙️ إجراءات]
             │       ├─→ [✏️ تعديل] → [نموذج تعديل البيانات]
@@ -1926,16 +1926,16 @@
     │
     ├─→ [فتح قائمة الحسابات التجريبية]
     │       │
-    │       ├─ 🛡️ مدير النظام │ admin@campus26.sa
-    │       ├─ 👔 العميد │ dean@campus26.sa
-    │       ├─ 📋 وكيل التدريب │ vp.trainers@campus26.sa
-    │       ├─ 🎓 وكيل المتدربين │ vp.trainees@campus26.sa
-    │       ├─ ⭐ وكيل الجودة │ vp.quality@campus26.sa
-    │       ├─ 🏢 رئيس القسم │ head.cs@campus26.sa
-    │       ├─ 👨‍🏫 مدرب │ trainer.abdulaziz@campus26.sa
-    │       ├─ 👨‍🎓 متدرب │ s241001@stu.campus26.sa
-    │       ├─ 💰 محاسب │ accountant@campus26.sa
-    │       └─ 📊 مسؤول جودة │ quality@campus26.sa
+    │       ├─ 🛡️ مدير النظام │ admin@campus27.sa
+    │       ├─ 👔 العميد │ dean@campus27.sa
+    │       ├─ 📋 وكيل التدريب │ vp.trainers@campus27.sa
+    │       ├─ 🎓 وكيل المتدربين │ vp.trainees@campus27.sa
+    │       ├─ ⭐ وكيل الجودة │ vp.quality@campus27.sa
+    │       ├─ 🏢 رئيس القسم │ head.cs@campus27.sa
+    │       ├─ 👨‍🏫 مدرب │ trainer.abdulaziz@campus27.sa
+    │       ├─ 👨‍🎓 متدرب │ s241001@stu.campus27.sa
+    │       ├─ 💰 محاسب │ accountant@campus27.sa
+    │       └─ 📊 مسؤول جودة │ quality@campus27.sa
     │
     └─→ [اختيار حساب] → [signOut + signIn تلقائي] → [تحميل لوحة التحكم الجديدة]
 
@@ -2316,5 +2316,5 @@
 ---
 
 > **إعداد:** Claude AI - UX Analysis Expert
-> **المشروع:** Campus26 - Technical College Management SaaS
+> **المشروع:** Campus27 - Technical College Management SaaS
 > **الملف:** `/docs/user-stories-and-flows.md`

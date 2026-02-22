@@ -2,7 +2,7 @@
 set -euo pipefail
 
 # ═══════════════════════════════════════════════
-# Campus26 - Server Initial Setup (Ubuntu 22.04/24.04)
+# Campus27 - Server Initial Setup (Ubuntu 22.04/24.04)
 # Run on a fresh VPS as root
 # Usage: bash setup-server.sh
 # ═══════════════════════════════════════════════
@@ -45,8 +45,8 @@ usermod -aG docker deploy
 
 # ── Create app directory ──
 log "Setting up application directory..."
-mkdir -p /opt/campus26
-chown deploy:deploy /opt/campus26
+mkdir -p /opt/campus27
+chown deploy:deploy /opt/campus27
 
 # ── Swap (for small VPS) ──
 if [ ! -f /swapfile ]; then
@@ -60,9 +60,9 @@ fi
 
 # ── Cron for backups ──
 log "Setting up daily backup cron..."
-cat > /etc/cron.d/campus26-backup << 'CRON'
+cat > /etc/cron.d/campus27-backup << 'CRON'
 # Daily backup at 3:00 AM (Saudi time = UTC+3 → 00:00 UTC)
-0 0 * * * deploy cd /opt/campus26 && ./deploy/backup.sh backup >> /var/log/campus26-backup.log 2>&1
+0 0 * * * deploy cd /opt/campus27 && ./deploy/backup.sh backup >> /var/log/campus27-backup.log 2>&1
 CRON
 
 # ── Auto security updates ──
@@ -74,7 +74,7 @@ log "==================================="
 log "  Server setup complete!"
 log ""
 log "  Next steps:"
-log "  1. Copy project to /opt/campus26/"
+log "  1. Copy project to /opt/campus27/"
 log "  2. cp .env.production.example .env.production"
 log "  3. Edit .env.production with real values"
 log "  4. chmod +x deploy/*.sh"

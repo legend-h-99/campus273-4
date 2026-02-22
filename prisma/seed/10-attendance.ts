@@ -1,5 +1,5 @@
 // =============================================================================
-// Campus26 Seed: Attendance
+// Campus27 Seed: Attendance
 // Generates 16 weeks of attendance records for all enrollments
 // =============================================================================
 

@@ -108,9 +108,9 @@ export async function seedTrainers(
         .toLowerCase()
         .replace(/^al-/, "al")
         .replace(/[^a-z]/g, "");
-      let email = `trainer.${cleanFirst}.${cleanLast}@campus26.sa`;
+      let email = `trainer.${cleanFirst}.${cleanLast}@campus27.sa`;
       if (usedEmails.has(email)) {
-        email = `trainer.${cleanFirst}.${cleanLast}.${globalIndex}@campus26.sa`;
+        email = `trainer.${cleanFirst}.${cleanLast}.${globalIndex}@campus27.sa`;
       }
       usedEmails.add(email);
 

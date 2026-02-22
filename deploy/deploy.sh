@@ -2,11 +2,11 @@
 set -euo pipefail
 
 # ═══════════════════════════════════════════════
-# Campus26 - Production Deployment Script
+# Campus27 - Production Deployment Script
 # Usage: ./deploy/deploy.sh [first-run|update|rollback]
 # ═══════════════════════════════════════════════
 
-APP_DIR="/opt/campus26"
+APP_DIR="/opt/campus27"
 COMPOSE_FILE="docker-compose.prod.yml"
 ENV_FILE=".env.production"
 DOMAIN="cranl.com"
@@ -118,7 +118,7 @@ update() {
     # Tag current image for rollback
     CURRENT_IMAGE=$(docker compose -f "$COMPOSE_FILE" images app -q 2>/dev/null || echo "")
     if [ -n "$CURRENT_IMAGE" ]; then
-        docker tag "$CURRENT_IMAGE" campus26-app:rollback 2>/dev/null || true
+        docker tag "$CURRENT_IMAGE" campus27-app:rollback 2>/dev/null || true
         log "Current image tagged for rollback"
     fi
 
@@ -147,9 +147,9 @@ update() {
 rollback() {
     log "Rolling back to previous version..."
 
-    if docker image inspect campus26-app:rollback >/dev/null 2>&1; then
+    if docker image inspect campus27-app:rollback >/dev/null 2>&1; then
         docker compose -f "$COMPOSE_FILE" --env-file "$ENV_FILE" stop app
-        docker tag campus26-app:rollback campus26-app:latest
+        docker tag campus27-app:rollback campus27-app:latest
         docker compose -f "$COMPOSE_FILE" --env-file "$ENV_FILE" up -d app
         log "Rollback complete!"
     else

@@ -1,5 +1,5 @@
 // =============================================================================
-// Campus26 Seed: Enrollments
+// Campus27 Seed: Enrollments
 // Enrolls active trainees into courses matching their department and level
 // =============================================================================
 

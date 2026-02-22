@@ -1,7 +1,7 @@
 import type { PrismaClient } from "@prisma/client";
 
 // =============================================================================
-// Campus26 Quality Seed Data (Additive)
+// Campus27 Quality Seed Data (Additive)
 // KPI measurements, surveys, documents, meetings
 // Adds ON TOP of existing quality data (standards, KPIs, audits already seeded)
 // =============================================================================

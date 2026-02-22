@@ -2,7 +2,7 @@ import type { PrismaClient } from "@prisma/client";
 import { randomFrom, randomInt, randomDate } from "./helpers";
 
 // =============================================================================
-// Campus26 Tasks, Projects, Leaves, Evaluations & Notifications Seed
+// Campus27 Tasks, Projects, Leaves, Evaluations & Notifications Seed
 // =============================================================================
 
 // -----------------------------------------------------------------------------

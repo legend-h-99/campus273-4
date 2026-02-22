@@ -2,7 +2,7 @@ import type { PrismaClient } from "@prisma/client";
 import { randomInt, randomDate, randomFrom } from "./helpers";
 
 // =============================================================================
-// Campus26 Financial Seed Data
+// Campus27 Financial Seed Data
 // Budget items, transactions, procurement requests, warehouse items
 // =============================================================================
 

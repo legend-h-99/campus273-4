@@ -18,10 +18,10 @@ export function getChatSystemPrompt(ctx: PromptContext): string {
   const isAr = ctx.locale === "ar";
 
   if (isAr) {
-    return `أنت مساعد ذكي متخصص في إدارة الكليات التقنية السعودية، تعمل ضمن منصة Campus26 التابعة للمؤسسة العامة للتدريب التقني والمهني.
+    return `أنت مساعد ذكي متخصص في إدارة الكليات التقنية السعودية، تعمل ضمن منصة Campus27 التابعة للمؤسسة العامة للتدريب التقني والمهني.
 
 ## هويتك:
-- اسمك: مساعد Campus26
+- اسمك: مساعد Campus27
 - تخصصك: تحليل البيانات الأكاديمية والمالية والإدارية
 
 ## دورك:
@@ -45,10 +45,10 @@ ${ctx.roleInstructions ? `\n${ctx.roleInstructions}\n` : ''}
 ${ctx.dataContext ? `## بيانات السياق الحالية:\n${ctx.dataContext}` : "## ملاحظة: لا تتوفر بيانات سياق حالية. أجب بناءً على معرفتك العامة بإدارة الكليات التقنية."}`;
   }
 
-  return `You are an AI assistant specialized in Saudi technical college management, working within the Campus26 platform under the Technical and Vocational Training Corporation (TVTC).
+  return `You are an AI assistant specialized in Saudi technical college management, working within the Campus27 platform under the Technical and Vocational Training Corporation (TVTC).
 
 ## Your Identity:
-- Name: Campus26 Assistant
+- Name: Campus27 Assistant
 - Specialization: Academic, financial, and administrative data analysis
 
 ## Your Role:

@@ -33,7 +33,7 @@ interface SwitchUser {
 
 const switchUsers: SwitchUser[] = [
   {
-    email: "admin@campus26.sa",
+    email: "admin@campus27.sa",
     password: "123456",
     role: "super_admin",
     roleAr: "مدير النظام",
@@ -43,7 +43,7 @@ const switchUsers: SwitchUser[] = [
     color: "bg-red-500",
   },
   {
-    email: "dean@campus26.sa",
+    email: "dean@campus27.sa",
     password: "123456",
     role: "dean",
     roleAr: "العميد",
@@ -53,7 +53,7 @@ const switchUsers: SwitchUser[] = [
     color: "bg-teal-600",
   },
   {
-    email: "vp.trainers@campus26.sa",
+    email: "vp.trainers@campus27.sa",
     password: "123456",
     role: "vp_trainers",
     roleAr: "وكيل التدريب",
@@ -63,7 +63,7 @@ const switchUsers: SwitchUser[] = [
     color: "bg-blue-600",
   },
   {
-    email: "vp.trainees@campus26.sa",
+    email: "vp.trainees@campus27.sa",
     password: "123456",
     role: "vp_trainees",
     roleAr: "وكيل المتدربين",
@@ -73,7 +73,7 @@ const switchUsers: SwitchUser[] = [
     color: "bg-green-600",
   },
   {
-    email: "vp.quality@campus26.sa",
+    email: "vp.quality@campus27.sa",
     password: "123456",
     role: "vp_quality",
     roleAr: "وكيل الجودة",
@@ -83,7 +83,7 @@ const switchUsers: SwitchUser[] = [
     color: "bg-purple-600",
   },
   {
-    email: "head.cs@campus26.sa",
+    email: "head.cs@campus27.sa",
     password: "123456",
     role: "dept_head",
     roleAr: "رئيس قسم",
@@ -93,7 +93,7 @@ const switchUsers: SwitchUser[] = [
     color: "bg-orange-500",
   },
   {
-    email: "trainer.abdulaziz.almarri@campus26.sa",
+    email: "trainer.abdulaziz.almarri@campus27.sa",
     password: "123456",
     role: "trainer",
     roleAr: "مدرب",
@@ -103,7 +103,7 @@ const switchUsers: SwitchUser[] = [
     color: "bg-teal-500",
   },
   {
-    email: "s241001@stu.campus26.sa",
+    email: "s241001@stu.campus27.sa",
     password: "123456",
     role: "trainee",
     roleAr: "متدرب",
@@ -113,7 +113,7 @@ const switchUsers: SwitchUser[] = [
     color: "bg-cyan-500",
   },
   {
-    email: "accountant@campus26.sa",
+    email: "accountant@campus27.sa",
     password: "123456",
     role: "accountant",
     roleAr: "محاسب",
@@ -123,7 +123,7 @@ const switchUsers: SwitchUser[] = [
     color: "bg-amber-600",
   },
   {
-    email: "quality@campus26.sa",
+    email: "quality@campus27.sa",
     password: "123456",
     role: "quality_officer",
     roleAr: "مسؤول جودة",

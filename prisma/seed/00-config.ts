@@ -1,5 +1,5 @@
 // =============================================================================
-// Campus26 Seed Configuration
+// Campus27 Seed Configuration
 // Central constants and config shared across all seed scripts
 // =============================================================================
 

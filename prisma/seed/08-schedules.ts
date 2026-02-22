@@ -1,5 +1,5 @@
 // =============================================================================
-// Campus26 Seed: Schedules
+// Campus27 Seed: Schedules
 // Links trainers to courses with weekly time slots for the current semester
 // =============================================================================
 

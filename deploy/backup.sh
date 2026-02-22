@@ -2,7 +2,7 @@
 set -euo pipefail
 
 # ═══════════════════════════════════════════════
-# Campus26 - Backup Script
+# Campus27 - Backup Script
 # Usage: ./deploy/backup.sh [backup|restore FILENAME]
 # ═══════════════════════════════════════════════
 
@@ -23,18 +23,18 @@ backup() {
 
     mkdir -p "$BACKUP_DIR"
     TIMESTAMP=$(date +%Y%m%d_%H%M%S)
-    FILENAME="campus26_${TIMESTAMP}.sql.gz"
+    FILENAME="campus27_${TIMESTAMP}.sql.gz"
 
     log "Creating database backup..."
     docker compose -f "$COMPOSE_FILE" exec -T db \
-        pg_dump -U "${DB_USER:-campus26}" -d campus26 --clean --if-exists | \
+        pg_dump -U "${DB_USER:-campus27}" -d campus27 --clean --if-exists | \
         gzip > "$BACKUP_DIR/$FILENAME"
 
     SIZE=$(du -sh "$BACKUP_DIR/$FILENAME" | cut -f1)
     log "Backup created: $BACKUP_DIR/$FILENAME ($SIZE)"
 
     # Clean old backups
-    find "$BACKUP_DIR" -name "campus26_*.sql.gz" -mtime +$RETENTION_DAYS -delete 2>/dev/null
+    find "$BACKUP_DIR" -name "campus27_*.sql.gz" -mtime +$RETENTION_DAYS -delete 2>/dev/null
     log "Old backups cleaned (retention: ${RETENTION_DAYS} days)"
 }
 
@@ -50,7 +50,7 @@ restore() {
     [ "$CONFIRM" != "y" ] && exit 0
 
     gunzip -c "$FILE" | docker compose -f "$COMPOSE_FILE" exec -T db \
-        psql -U "${DB_USER:-campus26}" -d campus26
+        psql -U "${DB_USER:-campus27}" -d campus27
 
     log "Database restored successfully from $FILE"
 }

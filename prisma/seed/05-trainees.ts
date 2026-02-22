@@ -109,7 +109,7 @@ export async function seedTrainees(
       const fullNameEn = `${firstNameEntry.en} ${familyEntry.en}`;
 
       const studentNumber = generateStudentNumber(idx + STUDENT_INDEX_OFFSET);
-      const email = `s${studentNumber}@stu.campus26.sa`;
+      const email = `s${studentNumber}@stu.campus27.sa`;
       const nationalId = generateNationalId(isMale ? "male" : "female");
       const phone = generateSaudiPhone();
       const guardianPhone = generateSaudiPhone();

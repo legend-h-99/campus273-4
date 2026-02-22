@@ -1,6 +1,6 @@
 /**
  * AI System Configuration
- * إعدادات نظام الذكاء الاصطناعي - Campus26
+ * إعدادات نظام الذكاء الاصطناعي - Campus27
  */
 
 // ═══ Provider Configuration ═══
