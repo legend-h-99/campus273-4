@@ -2,11 +2,15 @@ import { NextResponse } from "next/server";
 import { prisma } from "@/lib/prisma";
 import { requirePermission } from "@/lib/rbac";
 import { PERMISSIONS } from "@/lib/permissions";
+import { requireTenantId } from "@/lib/tenant";
 
 export async function GET() {
   try {
     await requirePermission(PERMISSIONS.COURSES_VIEW);
+    const tenantId = await requireTenantId();
+
     const courses = await prisma.course.findMany({
+      where: { tenantId },
       include: { department: { select: { id: true, nameAr: true, nameEn: true } } },
       orderBy: { createdAt: "desc" },
     });
@@ -19,6 +23,7 @@ export async function GET() {
 export async function POST(req: Request) {
   try {
     await requirePermission(PERMISSIONS.COURSES_CREATE);
+    const tenantId = await requireTenantId();
     const body = await req.json();
     const course = await prisma.course.create({
       data: {
@@ -28,6 +33,7 @@ export async function POST(req: Request) {
         descriptionAr: body.descriptionAr,
         descriptionEn: body.descriptionEn,
         departmentId: body.departmentId,
+        tenantId,
         credits: Number(body.credits ?? 3),
         hours: Number(body.hours ?? 3),
         level: Number(body.level ?? 1),
