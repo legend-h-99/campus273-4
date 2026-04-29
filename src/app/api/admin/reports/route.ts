@@ -2,19 +2,21 @@ import { NextResponse } from "next/server";
 import { prisma } from "@/lib/prisma";
 import { requirePermission } from "@/lib/rbac";
 import { PERMISSIONS } from "@/lib/permissions";
+import { requireTenantId } from "@/lib/tenant";
 
 export async function GET() {
   try {
     await requirePermission(PERMISSIONS.REPORTS_VIEW);
+    const tenantId = await requireTenantId();
 
     const [usersByRole, traineesByDepartment, coursesByDepartment, qualityKpis] = await Promise.all([
-      prisma.user.groupBy({ by: ["role"], _count: { role: true } }),
-      prisma.trainee.groupBy({ by: ["departmentId"], _count: { departmentId: true } }),
-      prisma.course.groupBy({ by: ["departmentId"], _count: { departmentId: true } }),
+      prisma.user.groupBy({ by: ["role"], where: { tenantId }, _count: { role: true } }),
+      prisma.trainee.groupBy({ by: ["departmentId"], where: { tenantId }, _count: { departmentId: true } }),
+      prisma.course.groupBy({ by: ["departmentId"], where: { tenantId }, _count: { departmentId: true } }),
       prisma.kpiMeasurement.groupBy({ by: ["status"], _count: { status: true } }),
     ]);
 
-    const departments = await prisma.department.findMany({ select: { id: true, nameAr: true, nameEn: true } });
+    const departments = await prisma.department.findMany({ where: { tenantId }, select: { id: true, nameAr: true, nameEn: true } });
     const departmentName = (id: string | null) => departments.find((d) => d.id === id)?.nameAr ?? "غير محدد";
 
     return NextResponse.json({
