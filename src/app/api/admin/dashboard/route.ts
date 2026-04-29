@@ -2,21 +2,24 @@ import { NextResponse } from "next/server";
 import { prisma } from "@/lib/prisma";
 import { requirePermission } from "@/lib/rbac";
 import { PERMISSIONS } from "@/lib/permissions";
+import { requireTenantId } from "@/lib/tenant";
 
 export async function GET() {
   try {
     await requirePermission(PERMISSIONS.DASHBOARD_VIEW);
+    const tenantId = await requireTenantId();
 
     const [users, trainees, trainers, courses, departments] = await Promise.all([
-      prisma.user.count(),
-      prisma.trainee.count(),
-      prisma.trainer.count(),
-      prisma.course.count(),
-      prisma.department.count(),
+      prisma.user.count({ where: { tenantId } }),
+      prisma.trainee.count({ where: { tenantId } }),
+      prisma.trainer.count({ where: { tenantId } }),
+      prisma.course.count({ where: { tenantId } }),
+      prisma.department.count({ where: { tenantId } }),
     ]);
 
     const usersByRole = await prisma.user.groupBy({
       by: ["role"],
+      where: { tenantId },
       _count: { role: true },
     });
 
