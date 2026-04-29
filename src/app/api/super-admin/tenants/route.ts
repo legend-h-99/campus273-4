@@ -1,18 +1,30 @@
 import { NextResponse } from "next/server";
 import { prisma } from "@/lib/prisma";
+import { requireSuperAdmin } from "@/lib/super-admin";
 
 export async function GET() {
-  const tenants = await prisma.$queryRaw`SELECT * FROM tenants`;
-  return NextResponse.json(tenants);
+  try {
+    await requireSuperAdmin();
+    const tenants = await prisma.$queryRaw`SELECT * FROM tenants`;
+    return NextResponse.json(tenants);
+  } catch {
+    return NextResponse.json({ error: "Forbidden" }, { status: 403 });
+  }
 }
 
 export async function POST(req: Request) {
-  const body = await req.json();
+  try {
+    await requireSuperAdmin();
 
-  await prisma.$executeRaw`
-    INSERT INTO tenants (id, name, slug, plan, status)
-    VALUES (${crypto.randomUUID()}, ${body.name}, ${body.slug}, ${body.plan}, 'active')
-  `;
+    const body = await req.json();
 
-  return NextResponse.json({ success: true });
+    await prisma.$executeRaw`
+      INSERT INTO tenants (id, name, slug, plan, status)
+      VALUES (${crypto.randomUUID()}, ${body.name}, ${body.slug}, ${body.plan}, 'active')
+    `;
+
+    return NextResponse.json({ success: true });
+  } catch {
+    return NextResponse.json({ error: "Forbidden" }, { status: 403 });
+  }
 }
