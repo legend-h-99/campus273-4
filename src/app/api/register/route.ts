@@ -15,6 +15,13 @@ export async function POST(req: Request) {
       return NextResponse.json({ error: "Email already exists" }, { status: 400 });
     }
 
+    const tenantId = crypto.randomUUID();
+
+    await prisma.$executeRaw`
+      INSERT INTO tenants (id, name, slug, plan, status)
+      VALUES (${tenantId}, ${nameAr}, ${email}, 'free', 'active')
+    `;
+
     const passwordHash = await hash(password, 10);
 
     const user = await prisma.user.create({
@@ -23,11 +30,13 @@ export async function POST(req: Request) {
         passwordHash,
         nameAr,
         nameEn,
+        role: "admin",
+        tenantId,
       },
     });
 
     return NextResponse.json({ id: user.id, email: user.email });
-  } catch (e) {
+  } catch {
     return NextResponse.json({ error: "Server error" }, { status: 500 });
   }
 }
