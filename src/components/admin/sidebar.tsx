@@ -2,7 +2,7 @@
 
 import Link from "next/link";
 import { useSession } from "next-auth/react";
-import { canAccess } from "@/lib/rbac";
+import { canAccess } from "@/lib/client-rbac";
 import { PERMISSIONS } from "@/lib/permissions";
 
 export default function Sidebar() {
@@ -20,14 +20,6 @@ export default function Sidebar() {
 
         {canAccess(permissions, PERMISSIONS.USERS_VIEW) && (
           <Link href="/ar/dashboard/users">Users</Link>
-        )}
-
-        {canAccess(permissions, PERMISSIONS.TRAINEES_VIEW) && (
-          <Link href="/ar/dashboard/trainees">Trainees</Link>
-        )}
-
-        {canAccess(permissions, PERMISSIONS.TRAINERS_VIEW) && (
-          <Link href="/ar/dashboard/trainers">Trainers</Link>
         )}
 
         {canAccess(permissions, PERMISSIONS.COURSES_VIEW) && (
