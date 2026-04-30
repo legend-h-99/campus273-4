@@ -12,11 +12,17 @@ export async function PUT(req: Request, context: RouteContext) {
     const tenantId = await requireTenantId();
     const { id } = await context.params;
     const body = await req.json();
-    const course = await prisma.course.update({
+
+    const result = await prisma.course.updateMany({
       where: { id, tenantId },
       data: body,
     });
-    return NextResponse.json(course);
+
+    if (result.count === 0) {
+      return NextResponse.json({ error: "Course not found" }, { status: 404 });
+    }
+
+    return NextResponse.json({ success: true });
   } catch {
     return NextResponse.json({ error: "Update failed" }, { status: 400 });
   }
@@ -27,7 +33,13 @@ export async function DELETE(_: Request, context: RouteContext) {
     await requirePermission(PERMISSIONS.COURSES_DELETE);
     const tenantId = await requireTenantId();
     const { id } = await context.params;
-    await prisma.course.delete({ where: { id, tenantId } });
+
+    const result = await prisma.course.deleteMany({ where: { id, tenantId } });
+
+    if (result.count === 0) {
+      return NextResponse.json({ error: "Course not found" }, { status: 404 });
+    }
+
     return NextResponse.json({ success: true });
   } catch {
     return NextResponse.json({ error: "Delete failed" }, { status: 400 });
