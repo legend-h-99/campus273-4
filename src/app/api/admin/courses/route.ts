@@ -9,11 +9,12 @@ export async function GET() {
     await requirePermission(PERMISSIONS.COURSES_VIEW);
     const tenantId = await requireTenantId();
 
-    const courses = await prisma.course.findMany({
-      where: { tenantId },
-      include: { department: { select: { id: true, nameAr: true, nameEn: true } } },
-      orderBy: { createdAt: "desc" },
-    });
+    const courses = await prisma.$queryRaw`
+      SELECT * FROM courses
+      WHERE tenant_id = ${tenantId}
+      ORDER BY created_at DESC
+    `;
+
     return NextResponse.json(courses);
   } catch {
     return NextResponse.json({ error: "Unauthorized" }, { status: 401 });
@@ -25,21 +26,15 @@ export async function POST(req: Request) {
     await requirePermission(PERMISSIONS.COURSES_CREATE);
     const tenantId = await requireTenantId();
     const body = await req.json();
-    const course = await prisma.course.create({
-      data: {
-        courseCode: body.courseCode,
-        nameAr: body.nameAr,
-        nameEn: body.nameEn,
-        descriptionAr: body.descriptionAr,
-        descriptionEn: body.descriptionEn,
-        departmentId: body.departmentId,
-        tenantId,
-        credits: Number(body.credits ?? 3),
-        hours: Number(body.hours ?? 3),
-        level: Number(body.level ?? 1),
-      },
-    });
-    return NextResponse.json(course, { status: 201 });
+
+    const id = crypto.randomUUID();
+
+    await prisma.$executeRaw`
+      INSERT INTO courses (id, course_code, name_ar, name_en, description_ar, description_en, department_id, tenant_id, credits, hours, level, is_active, created_at, updated_at)
+      VALUES (${id}, ${body.courseCode}, ${body.nameAr}, ${body.nameEn}, ${body.descriptionAr ?? null}, ${body.descriptionEn ?? null}, ${body.departmentId}, ${tenantId}, ${Number(body.credits ?? 3)}, ${Number(body.hours ?? 3)}, ${Number(body.level ?? 1)}, true, NOW(), NOW())
+    `;
+
+    return NextResponse.json({ id, success: true }, { status: 201 });
   } catch {
     return NextResponse.json({ error: "Unable to create course" }, { status: 400 });
   }
