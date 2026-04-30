@@ -1,0 +1,38 @@
+// SaaS tenant models reference. Copy these into schema.prisma when consolidating the Prisma schema.
+// Kept separate to avoid corrupting the large generated schema during deployment hotfixing.
+
+model Tenant {
+  id        String   @id @default(cuid())
+  name      String
+  slug      String   @unique
+  plan      String   @default("free")
+  status    String   @default("active")
+  createdAt DateTime @default(now()) @map("created_at")
+
+  users       User[]
+  departments Department[]
+  trainees    Trainee[]
+  trainers    Trainer[]
+  courses     Course[]
+  subscriptions Subscription[]
+
+  @@map("tenants")
+}
+
+model Subscription {
+  id        String   @id @default(cuid())
+  tenantId  String   @map("tenant_id")
+  plan      String   @default("free")
+  status    String   @default("active")
+  createdAt DateTime @default(now()) @map("created_at")
+
+  tenant Tenant @relation(fields: [tenantId], references: [id], onDelete: Cascade)
+
+  @@index([tenantId])
+  @@map("subscriptions")
+}
+
+// Add to core models:
+// tenantId String? @map("tenant_id")
+// tenant Tenant? @relation(fields: [tenantId], references: [id])
+// @@index([tenantId])
