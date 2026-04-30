@@ -13,14 +13,15 @@ export async function PUT(req: Request, context: RouteContext) {
     const { id } = await context.params;
     const body = await req.json();
 
-    const result = await prisma.course.updateMany({
-      where: { id, tenantId },
-      data: body,
-    });
-
-    if (result.count === 0) {
-      return NextResponse.json({ error: "Course not found" }, { status: 404 });
-    }
+    await prisma.$executeRaw`
+      UPDATE courses
+      SET
+        "nameAr" = COALESCE(${body.nameAr}, "nameAr"),
+        "nameEn" = COALESCE(${body.nameEn}, "nameEn"),
+        "descriptionAr" = COALESCE(${body.descriptionAr}, "descriptionAr"),
+        "descriptionEn" = COALESCE(${body.descriptionEn}, "descriptionEn")
+      WHERE id = ${id} AND tenant_id = ${tenantId}
+    `;
 
     return NextResponse.json({ success: true });
   } catch {
@@ -34,11 +35,9 @@ export async function DELETE(_: Request, context: RouteContext) {
     const tenantId = await requireTenantId();
     const { id } = await context.params;
 
-    const result = await prisma.course.deleteMany({ where: { id, tenantId } });
-
-    if (result.count === 0) {
-      return NextResponse.json({ error: "Course not found" }, { status: 404 });
-    }
+    await prisma.$executeRaw`
+      DELETE FROM courses WHERE id = ${id} AND tenant_id = ${tenantId}
+    `;
 
     return NextResponse.json({ success: true });
   } catch {
